@@ -6,6 +6,7 @@ import '../../domain/entities/question.dart';
 import '../../domain/usecases/get_questions.dart';
 
 part 'quiz_event.dart';
+
 part 'quiz_state.dart';
 
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
@@ -27,7 +28,11 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     try {
       emit(QuizLoading(state.questions));
 
-      final type = event.type.contains('Any') ? null : event.type;
+      final type = event.type.contains('Any')
+          ? null
+          : event.type.contains('True')
+              ? 'boolean'
+              : event.type;
       final difficulty =
           event.difficulty.contains('Any') ? null : event.difficulty;
 

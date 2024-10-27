@@ -34,50 +34,53 @@ class _CategoryConfigDialogState extends State<CategoryConfigDialog> {
     return Dialog(
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text('Quiz Configuration'),
-            largeGap,
-            TextField(
-              controller: _numberOfQuestions,
-              decoration: const InputDecoration(
-                labelText: 'Number of questions',
-                border: OutlineInputBorder(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text('Quiz Configuration'),
+              largeGap,
+              TextField(
+                controller: _numberOfQuestions,
+                decoration: const InputDecoration(
+                  labelText: 'Number of questions',
+                  border: OutlineInputBorder(),
+                ),
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(3),
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  // Handle the change in number of questions
+                },
               ),
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(3),
-              ],
-              keyboardType: TextInputType.number,
-              onChanged: (value) {
-                // Handle the change in number of questions
-              },
-            ),
-            mediumGap,
-            CustomDropdown(
-              label: 'Select Difficulty',
-              items: _difficulties,
-              value: _difficulty,
-              onChanged: (String? value) {
-                _difficulty = value;
-              },
-            ),
-            mediumGap,
-            CustomDropdown(
-              label: 'Select Type',
-              items: _types,
-              value: _type,
-              onChanged: (String? value) {
-                _type = value;
-              },
-            ),
-            mediumGap,
-            ElevatedButton(
-              onPressed: _onStart,
-              child: const Text('Start Quiz'),
-            ),
-          ],
+              mediumGap,
+              CustomDropdown(
+                label: 'Select Difficulty',
+                items: _difficulties,
+                value: _difficulty,
+                onChanged: (String? value) {
+                  _difficulty = value;
+                },
+              ),
+              mediumGap,
+              CustomDropdown(
+                label: 'Select Type',
+                items: _types,
+                value: _type,
+                onChanged: (String? value) {
+                  _type = value;
+                },
+              ),
+              mediumGap,
+              ElevatedButton(
+                onPressed: _onStart,
+                child: const Text('Start Quiz'),
+              ),
+            ],
+          ),
         ),
       ),
     );
