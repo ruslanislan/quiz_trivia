@@ -1,0 +1,10 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - prefer_relative_imports
+    - prefer_single_quotes
+    - avoid_dynamic_calls
+    - directives_ordering
+    - avoid_annotating_with_dynamic
+    - require_trailing_commas
